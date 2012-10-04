@@ -22,6 +22,9 @@ public class TypedSuperCriteria<T> {
     }
 
 
+    /**
+     * 实体类
+     */
     protected Class<T> entityClass;
     protected Criteria criteria;
 

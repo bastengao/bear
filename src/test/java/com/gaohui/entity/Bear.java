@@ -20,6 +20,8 @@ public class Bear {
 
     private String name;
 
+    private int age;
+
     public int getId() {
         return id;
     }
@@ -36,11 +38,20 @@ public class Bear {
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "Bear{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", age=" + age +
                 '}';
     }
 }

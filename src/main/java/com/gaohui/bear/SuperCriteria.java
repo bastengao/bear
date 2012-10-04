@@ -3,6 +3,7 @@ package com.gaohui.bear;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
@@ -99,6 +100,18 @@ public class SuperCriteria {
         criteria.addOrder(Order.desc(property));
         return this;
     }
+
+    public long count() {
+        // TODO "count(*)" change to "count(1)"
+        criteria.setProjection(Projections.rowCount());
+        return (Long) one();
+    }
+
+    public Object count(String property) {
+        criteria.setProjection(Projections.count(property));
+        return one();
+    }
+
 
     public Object one() {
         criteria.setMaxResults(1);
