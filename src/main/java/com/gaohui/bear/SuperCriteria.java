@@ -25,10 +25,66 @@ public class SuperCriteria {
         this.criteria = criteria;
     }
 
+    /**
+     * where equal
+     *
+     * @param property
+     * @param value
+     * @return
+     */
     public SuperCriteria where(String property, Object value) {
         criteria.add(Restrictions.eq(property, value));
         return this;
     }
+
+    /**
+     * great than
+     *
+     * @param property
+     * @param value
+     * @return
+     */
+    public SuperCriteria gt(String property, Object value) {
+        criteria.add(Restrictions.gt(property, value));
+        return this;
+    }
+
+    /**
+     * great than or equal
+     *
+     * @param property
+     * @param value
+     * @return
+     */
+    public SuperCriteria ge(String property, Object value) {
+        criteria.add(Restrictions.ge(property, value));
+        return this;
+    }
+
+    /**
+     * less than
+     *
+     * @param property
+     * @param value
+     * @return
+     */
+    public SuperCriteria lt(String property, Object value) {
+        criteria.add(Restrictions.lt(property, value));
+        return this;
+    }
+
+    /**
+     * less than or equal
+     *
+     * @param property
+     * @param value
+     * @return
+     */
+    public SuperCriteria le(String property, Object value) {
+        criteria.add(Restrictions.le(property, value));
+        return this;
+    }
+
 
     public SuperCriteria order(String property) {
         return orderASC(property);
