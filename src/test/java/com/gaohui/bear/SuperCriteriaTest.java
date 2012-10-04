@@ -1,9 +1,15 @@
 package com.gaohui.bear;
 
+import com.gaohui.entity.Bear;
 import com.gaohui.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.util.List;
 
 /**
  * Date: 12-10-4
@@ -11,13 +17,26 @@ import org.junit.Test;
  *
  * @author bastengao
  */
-public class SuperCriteriaTest {
+public class SuperCriteriaTest extends PerSessionBaseTest {
+
     @Test
     public void testWhereAndOne() {
-        SessionFactory sessionFactory = HibernateUtil.defaultSessionFactory();
+        SuperCriteria superCriteria = new SuperCriteria(session.createCriteria(Bear.class));
+        Bear bear = (Bear) superCriteria.where("id", 1).one();
+        System.out.println(bear);
+    }
 
-        Session session = sessionFactory.getCurrentSession();
+    @Test
+    public void testList() {
+        SuperCriteria superCriteria = new SuperCriteria(session.createCriteria(Bear.class));
+        List<Bear> bears = superCriteria.list();
+        System.out.println(bears);
+    }
 
-        session.getTransaction().begin();
+    @Test
+    public void testListPaging() {
+        SuperCriteria superCriteria = new SuperCriteria(session.createCriteria(Bear.class));
+        List<Bear> bears = superCriteria.list(1, 2);
+        System.out.println(bears);
     }
 }

@@ -6,6 +6,8 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -15,12 +17,16 @@ import org.junit.Test;
  * @author bastengao
  */
 public class CriteriaTest {
+    private static SessionFactory sessionFactory;
+
+    @BeforeClass
+    public static void beforeClass() {
+        sessionFactory = HibernateUtil.defaultSessionFactory();
+    }
+
     @Test
     public void testWhere() {
-        SessionFactory sessionFactory = HibernateUtil.defaultSessionFactory();
-
         Session session = sessionFactory.getCurrentSession();
-
         session.getTransaction().begin();
 
         Criteria criteria = session.createCriteria(Bear.class);
@@ -31,4 +37,5 @@ public class CriteriaTest {
 
         session.getTransaction().commit();
     }
+
 }

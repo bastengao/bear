@@ -3,6 +3,8 @@ package com.gaohui.bear;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.List;
+
 /**
  * Date: 12-10-4
  * Time: 上午9:38
@@ -10,7 +12,7 @@ import org.hibernate.criterion.Restrictions;
  * @author bastengao
  */
 public class SuperCriteria {
-    private Criteria criteria;
+    protected Criteria criteria;
 
     public SuperCriteria(Criteria criteria) {
         this.criteria = criteria;
@@ -23,5 +25,13 @@ public class SuperCriteria {
 
     public Object one() {
         return criteria.uniqueResult();
+    }
+
+    public List list() {
+        return criteria.list();
+    }
+
+    public List list(int first, int max) {
+        return criteria.setFirstResult(first).setMaxResults(max).list();
     }
 }
