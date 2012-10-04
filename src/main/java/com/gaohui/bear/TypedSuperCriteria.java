@@ -35,14 +35,17 @@ public class TypedSuperCriteria<T> {
         return this;
     }
 
+    @SuppressWarnings("unchecked")
     public T one() {
         return (T) superCriteria.one();
     }
 
+    @SuppressWarnings("unchecked")
     public List<T> list(int first, int max) {
         return superCriteria.list(first, max);
     }
 
+    @SuppressWarnings("unchecked")
     public List<T> list() {
         return superCriteria.list();
     }
