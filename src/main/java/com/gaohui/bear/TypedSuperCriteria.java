@@ -1,6 +1,7 @@
 package com.gaohui.bear;
 
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 
 import java.util.List;
 
@@ -12,6 +13,12 @@ import java.util.List;
  * @author bastengao
  */
 public class TypedSuperCriteria<T> {
+
+    public static <T> TypedSuperCriteria<T> create(Session session, Class<T> entityClass) {
+        return new TypedSuperCriteria<T>(session.createCriteria(entityClass), entityClass);
+    }
+
+
     protected Class<T> entityClass;
     protected Criteria criteria;
 

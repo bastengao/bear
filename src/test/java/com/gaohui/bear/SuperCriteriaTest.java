@@ -20,6 +20,13 @@ import java.util.List;
 public class SuperCriteriaTest extends PerSessionBaseTest {
 
     @Test
+    public void testCreate() {
+        SuperCriteria superCriteria = SuperCriteria.create(session, Bear.class);
+        Bear bear = (Bear) superCriteria.where("id", 1).one();
+        System.out.println(bear);
+    }
+
+    @Test
     public void testWhereAndOne() {
         SuperCriteria superCriteria = new SuperCriteria(session.createCriteria(Bear.class));
         Bear bear = (Bear) superCriteria.where("id", 1).one();
@@ -38,5 +45,9 @@ public class SuperCriteriaTest extends PerSessionBaseTest {
         SuperCriteria superCriteria = new SuperCriteria(session.createCriteria(Bear.class));
         List<Bear> bears = superCriteria.list(1, 2);
         System.out.println(bears);
+    }
+
+    @Test
+    public void testOrder() {
     }
 }

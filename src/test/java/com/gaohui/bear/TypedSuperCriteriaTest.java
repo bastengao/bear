@@ -12,6 +12,14 @@ import org.junit.Test;
 public class TypedSuperCriteriaTest extends PerSessionBaseTest {
 
     @Test
+    public void testCreate() {
+        TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+
+        Bear bear = criteria.where("id", 1).one();
+        System.out.println(bear);
+    }
+
+    @Test
     public void testWhereAndOne() {
         TypedSuperCriteria<Bear> criteria = new TypedSuperCriteria<Bear>(session.createCriteria(Bear.class), Bear.class);
 
