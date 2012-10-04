@@ -49,5 +49,20 @@ public class SuperCriteriaTest extends PerSessionBaseTest {
 
     @Test
     public void testOrder() {
+        SuperCriteria superCriteria = SuperCriteria.create(session, Bear.class);
+
+        Bear bear = (Bear) superCriteria.order("id").one();
+        System.out.println(bear);
+
+        bear = (Bear) superCriteria.orderASC("id").one();
+        System.out.println(bear);
+    }
+
+    @Test
+    public void testOrderDESC() {
+        SuperCriteria superCriteria = SuperCriteria.create(session, Bear.class);
+
+        Bear bear = (Bear) superCriteria.orderDESC("id").one();
+        System.out.println(bear);
     }
 }

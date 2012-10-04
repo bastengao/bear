@@ -30,13 +30,13 @@ public class SuperCriteria {
         return this;
     }
 
+    public SuperCriteria order(String property) {
+        return orderASC(property);
+    }
+
     public SuperCriteria orderASC(String property) {
         criteria.addOrder(Order.asc(property));
         return this;
-    }
-
-    public SuperCriteria order(String property) {
-        return orderASC(property);
     }
 
     public SuperCriteria orderDESC(String property) {
@@ -45,6 +45,7 @@ public class SuperCriteria {
     }
 
     public Object one() {
+        criteria.setMaxResults(1);
         return criteria.uniqueResult();
     }
 
