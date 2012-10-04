@@ -26,4 +26,23 @@ public class TypedSuperCriteriaTest extends PerSessionBaseTest {
         Bear bear = criteria.where("id", 1).one();
         System.out.println(bear);
     }
+
+    @Test
+    public void testOrder() {
+        TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+
+        Bear bear = criteria.order("id").one();
+        System.out.println(bear);
+
+        bear = criteria.orderASC("id").one();
+        System.out.println(bear);
+    }
+
+    @Test
+    public void testOrderDESC() {
+        TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+
+        Bear bear = criteria.orderDESC("id").one();
+        System.out.println(bear);
+    }
 }

@@ -6,7 +6,10 @@ import org.hibernate.Session;
 import java.util.List;
 
 /**
+ * 增强类型的 Criteria.
+ * <p/>
  * Criteria 一直以来没有类型，强转总是很让人DT.
+ * <p/>
  * Date: 12-10-4
  * Time: 上午9:56
  *
@@ -32,6 +35,21 @@ public class TypedSuperCriteria<T> {
 
     public TypedSuperCriteria<T> where(String property, Object value) {
         superCriteria.where(property, value);
+        return this;
+    }
+
+    public TypedSuperCriteria<T> order(String property) {
+        superCriteria.order(property);
+        return this;
+    }
+
+    public TypedSuperCriteria<T> orderASC(String property) {
+        superCriteria.orderASC(property);
+        return this;
+    }
+
+    public TypedSuperCriteria<T> orderDESC(String property) {
+        superCriteria.orderDESC(property);
         return this;
     }
 
