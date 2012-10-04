@@ -1,12 +1,6 @@
 package com.gaohui.bear;
 
 import com.gaohui.entity.Bear;
-import com.gaohui.util.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.List;
