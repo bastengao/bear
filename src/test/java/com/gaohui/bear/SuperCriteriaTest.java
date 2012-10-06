@@ -1,6 +1,7 @@
 package com.gaohui.bear;
 
 import com.gaohui.entity.Bear;
+import com.gaohui.entity.Python;
 import org.junit.Test;
 
 import java.util.List;
@@ -74,5 +75,11 @@ public class SuperCriteriaTest extends PerSessionBaseTest {
 
         Long count = (Long) superCriteria.count("id");
         System.out.println(count);
+    }
+
+    @Test
+    public void testQueryPython() {
+        SuperCriteria superCriteria = SuperCriteria.create(session, Python.class);
+        System.out.println(superCriteria.list());
     }
 }

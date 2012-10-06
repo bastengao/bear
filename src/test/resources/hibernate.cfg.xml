@@ -41,5 +41,6 @@
 
 
         <mapping class="com.gaohui.entity.Bear"/>
+        <mapping class="com.gaohui.entity.Python"/>
     </session-factory>
 </hibernate-configuration>
