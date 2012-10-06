@@ -60,6 +60,7 @@ public class CriteriaTest extends PerSessionBaseTest {
         criteria.createAlias("python.friends", "bear");
         criteria.add(Restrictions.gt("bear.id", 0));
         System.out.println(criteria.getAlias());
+        //TODO 要实现下面的查询，总是感觉很别扭
         criteria.setProjection(Projections.distinct(Projections.property("python.id")));
         System.out.println(criteria.list().size());
 
