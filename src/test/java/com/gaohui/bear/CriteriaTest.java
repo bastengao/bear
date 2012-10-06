@@ -1,13 +1,12 @@
 package com.gaohui.bear;
 
 import com.gaohui.entity.Bear;
-import com.gaohui.util.HibernateUtil;
+import com.gaohui.entity.Python;
 import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.FetchMode;
+import org.hibernate.Query;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -46,4 +45,25 @@ public class CriteriaTest extends PerSessionBaseTest {
         criteria.uniqueResult();
     }
 
+    @Test
+    public void testDynamicFetch() {
+        Criteria criteria = session.createCriteria(Python.class);
+
+        criteria.setFetchMode("friends", FetchMode.JOIN);
+
+        System.out.println(criteria.list());
+    }
+
+    @Test
+    public void testAssociates() {
+        Criteria criteria = session.createCriteria(Python.class, "python");
+        criteria.createAlias("python.friends", "bear");
+        criteria.add(Restrictions.gt("bear.id", 0));
+        System.out.println(criteria.getAlias());
+        criteria.setProjection(Projections.distinct(Projections.property("python.id")));
+        System.out.println(criteria.list().size());
+
+        Query query = session.createQuery("select distinct python from Python python join fetch python.friends bear where bear.id > 0");
+        System.out.println(query.list().size());
+    }
 }
