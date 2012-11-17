@@ -31,3 +31,7 @@ Bear 实体
 
     List<Bear> bears = criteria.orderDESC("age").list(0, 20);
 
+age 大于 5 的 bear 个数
+
+    long count = criteria.gt("age", 5).count();
+

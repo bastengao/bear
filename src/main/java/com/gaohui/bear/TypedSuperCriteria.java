@@ -41,6 +41,26 @@ public class TypedSuperCriteria<T> {
         return this;
     }
 
+    public TypedSuperCriteria<T> lt(String property, Object value){
+        enhancedCriteria.lt(property, value);
+        return this;
+    }
+
+    public TypedSuperCriteria<T> le(String property, Object value){
+        enhancedCriteria.le(property, value);
+        return this;
+    }
+
+    public TypedSuperCriteria<T> gt(String property, Object value){
+        enhancedCriteria.gt(property, value);
+        return this;
+    }
+
+    public TypedSuperCriteria<T> ge(String property, Object value){
+        enhancedCriteria.ge(property, value);
+        return this;
+    }
+
     public TypedSuperCriteria<T> order(String property) {
         enhancedCriteria.order(property);
         return this;
@@ -54,6 +74,14 @@ public class TypedSuperCriteria<T> {
     public TypedSuperCriteria<T> orderDESC(String property) {
         enhancedCriteria.orderDESC(property);
         return this;
+    }
+
+    public long count(){
+        return enhancedCriteria.count();
+    }
+
+    public long count(String property){
+        return enhancedCriteria.count(property);
     }
 
     @SuppressWarnings("unchecked")
