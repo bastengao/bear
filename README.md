@@ -1,3 +1,25 @@
 # Bear #
 
-Ò»¸ö»ùÓÚ Hibernate Ïò ActiveRecord ¿´ÆëµÄĞ¡Àà¿â
+ä¸€ä¸ªåŸºäº Hibernate å‘ active record çœ‹é½çš„å°ç±»åº“
+
+## ç”¨æ³• ##
+
+Bear å®ä½“
+
+    @Entity
+    public class Bear {
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        private int id;
+        private String name;
+        private int age;
+        ...
+    }
+
+æ ¹æ®IDæŸ¥æ‰¾
+
+    Session session = ...;
+    TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+
+    Bear bear = criteria.where("id", 1).one();
+
