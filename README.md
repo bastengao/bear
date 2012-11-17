@@ -25,9 +25,9 @@ Bear 实体
 
 根据 name 升序排序
 
-`List<Bear> bears = criteria.order("name").list();`
+    List<Bear> bears = criteria.order("name").list();
 
 根据 age 降序分页
 
-`List<Bear> bears = criteria.orderDESC("age").list(0, 20);`
+    List<Bear> bears = criteria.orderDESC("age").list(0, 20);
 
