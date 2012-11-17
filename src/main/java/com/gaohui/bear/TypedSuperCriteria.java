@@ -6,13 +6,13 @@ import org.hibernate.Session;
 import java.util.List;
 
 /**
- * 增强类型的 Criteria.
+ * 增强类型的 SuperCriteria.
  * <p/>
  * Criteria 一直以来没有类型，强转总是很让人DT.
  * <p/>
+ *
  * Date: 12-10-4
  * Time: 上午9:56
- *
  * @author bastengao
  */
 public class TypedSuperCriteria<T> {
@@ -36,8 +36,8 @@ public class TypedSuperCriteria<T> {
         superCriteria = new SuperCriteria(criteria);
     }
 
-    public TypedSuperCriteria<T> where(String property, Object value) {
-        superCriteria.where(property, value);
+    public TypedSuperCriteria<T> equal(String property, Object value) {
+        superCriteria.equal(property, value);
         return this;
     }
 

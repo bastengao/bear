@@ -15,7 +15,7 @@ public class TypedSuperCriteriaTest extends PerSessionBaseTest {
     public void testCreate() {
         TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
 
-        Bear bear = criteria.where("id", 1).one();
+        Bear bear = criteria.equal("id", 1).one();
         System.out.println(bear);
     }
 
@@ -23,7 +23,7 @@ public class TypedSuperCriteriaTest extends PerSessionBaseTest {
     public void testWhereAndOne() {
         TypedSuperCriteria<Bear> criteria = new TypedSuperCriteria<Bear>(session.createCriteria(Bear.class), Bear.class);
 
-        Bear bear = criteria.where("id", 1).one();
+        Bear bear = criteria.equal("id", 1).one();
         System.out.println(bear);
     }
 

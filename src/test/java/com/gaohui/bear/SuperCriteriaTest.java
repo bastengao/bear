@@ -17,14 +17,14 @@ public class SuperCriteriaTest extends PerSessionBaseTest {
     @Test
     public void testCreate() {
         SuperCriteria superCriteria = SuperCriteria.create(session, Bear.class);
-        Bear bear = (Bear) superCriteria.where("id", 1).one();
+        Bear bear = (Bear) superCriteria.equal("id", 1).one();
         System.out.println(bear);
     }
 
     @Test
     public void testWhereAndOne() {
         SuperCriteria superCriteria = new SuperCriteria(session.createCriteria(Bear.class));
-        Bear bear = (Bear) superCriteria.where("id", 1).one();
+        Bear bear = (Bear) superCriteria.equal("id", 1).one();
         System.out.println(bear);
     }
 
@@ -62,6 +62,14 @@ public class SuperCriteriaTest extends PerSessionBaseTest {
     }
 
     @Test
+    public void multiOrderBy(){
+        SuperCriteria superCriteria = SuperCriteria.create(session, Bear.class);
+
+        List<Bear> bears =  (List<Bear>)superCriteria.order("name").orderDESC("age").list();
+        System.out.println(bears);
+    }
+
+    @Test
     public void testCount() {
         SuperCriteria superCriteria = SuperCriteria.create(session, Bear.class);
 
@@ -75,6 +83,38 @@ public class SuperCriteriaTest extends PerSessionBaseTest {
 
         Long count = (Long) superCriteria.count("id");
         System.out.println(count);
+    }
+
+    @Test
+    public void testGE(){
+        SuperCriteria superCriteria = SuperCriteria.create(session, Bear.class);
+
+        List<Bear> bears = superCriteria.ge("age", 3).list();
+        System.out.println(bears);
+    }
+
+    @Test
+    public void testGT(){
+        SuperCriteria superCriteria = SuperCriteria.create(session, Bear.class);
+
+        List<Bear> bears = superCriteria.gt("age", 3).list();
+        System.out.println(bears);
+    }
+
+    @Test
+    public void testLE(){
+        SuperCriteria superCriteria = SuperCriteria.create(session, Bear.class);
+
+        List<Bear> bears = superCriteria.le("age", 5).list();
+        System.out.println(bears);
+    }
+
+    @Test
+    public void testLT(){
+        SuperCriteria superCriteria = SuperCriteria.create(session, Bear.class);
+
+        List<Bear> bears = superCriteria.lt("age", 5).list();
+        System.out.println(bears);
     }
 
     @Test
