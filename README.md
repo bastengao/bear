@@ -16,10 +16,18 @@ Bear 实体
         ...
     }
 
-根据ID查找
+根据 id 查找
 
     Session session = ...;
     TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
 
-    Bear bear = criteria.where("id", 1).one();
+    Bear bear = criteria.equal("id", 1).one();
+
+根据 name 升序排序
+
+`List<Bear> bears = criteria.order("name").list();`
+
+根据 age 降序分页
+
+`List<Bear> bears = criteria.orderDESC("age").list(0, 20);`
 
