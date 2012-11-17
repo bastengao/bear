@@ -136,9 +136,9 @@ public class EnhancedCriteria {
      * @param property
      * @return
      */
-    public Object count(String property) {
+    public long count(String property) {
         criteria.setProjection(Projections.count(property));
-        return one();
+        return (Long) one();
     }
 
 

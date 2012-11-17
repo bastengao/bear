@@ -81,7 +81,7 @@ public class EnhancedCriteriaTest extends PerSessionBaseTest {
     public void testCount2() {
         EnhancedCriteria enhancedCriteria = EnhancedCriteria.create(session, Bear.class);
 
-        Long count = (Long) enhancedCriteria.count("id");
+        long count = enhancedCriteria.count("id");
         System.out.println(count);
     }
 
