@@ -11,11 +11,11 @@ import java.util.List;
  *
  * @author bastengao
  */
-public class TypedSuperCriteriaTest extends PerSessionBaseTest {
+public class TypedCriteriaTest extends PerSessionBaseTest {
 
     @Test
     public void testCreate() {
-        TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
         Bear bear = criteria.equal("id", 1).one();
         System.out.println(bear);
@@ -23,7 +23,7 @@ public class TypedSuperCriteriaTest extends PerSessionBaseTest {
 
     @Test
     public void testWhereAndOne() {
-        TypedSuperCriteria<Bear> criteria = new TypedSuperCriteria<Bear>(session.createCriteria(Bear.class), Bear.class);
+        TypedCriteria<Bear> criteria = new TypedCriteria<Bear>(session.createCriteria(Bear.class), Bear.class);
 
         Bear bear = criteria.equal("id", 1).one();
         System.out.println(bear);
@@ -31,7 +31,7 @@ public class TypedSuperCriteriaTest extends PerSessionBaseTest {
 
     @Test
     public void testOrder() {
-        TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
         Bear bear = criteria.order("id").one();
         System.out.println(bear);
@@ -42,7 +42,7 @@ public class TypedSuperCriteriaTest extends PerSessionBaseTest {
 
     @Test
     public void testOrderDESC() {
-        TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
         Bear bear = criteria.orderDESC("id").one();
         System.out.println(bear);
@@ -50,7 +50,7 @@ public class TypedSuperCriteriaTest extends PerSessionBaseTest {
 
     @Test
     public void multiOrderBy(){
-        TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
         List<Bear> bears =  criteria.order("name").orderDESC("age").list();
         System.out.println(bears);
@@ -58,7 +58,7 @@ public class TypedSuperCriteriaTest extends PerSessionBaseTest {
 
     @Test
     public void testCount() {
-        TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
         long count = criteria.count();
         System.out.println(count);
@@ -66,7 +66,7 @@ public class TypedSuperCriteriaTest extends PerSessionBaseTest {
 
     @Test
     public void testCount2() {
-        TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
         long count = criteria.count("id");
         System.out.println(count);
@@ -74,7 +74,7 @@ public class TypedSuperCriteriaTest extends PerSessionBaseTest {
 
     @Test
     public void testGE(){
-        TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
         List<Bear> bears = criteria.ge("age", 3).list();
         System.out.println(bears);
@@ -82,7 +82,7 @@ public class TypedSuperCriteriaTest extends PerSessionBaseTest {
 
     @Test
     public void testGT(){
-        TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
         List<Bear> bears = criteria.gt("age", 3).list();
         System.out.println(bears);
@@ -90,7 +90,7 @@ public class TypedSuperCriteriaTest extends PerSessionBaseTest {
 
     @Test
     public void testLE(){
-        TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
         List<Bear> bears = criteria.le("age", 5).list();
         System.out.println(bears);
@@ -98,7 +98,7 @@ public class TypedSuperCriteriaTest extends PerSessionBaseTest {
 
     @Test
     public void testLT(){
-        TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
         List<Bear> bears = criteria.lt("age", 5).list();
         System.out.println(bears);

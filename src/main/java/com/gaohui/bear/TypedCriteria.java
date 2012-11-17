@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import java.util.List;
 
 /**
- * 增强类型的 EnhancedCriteria.
+ * 强类型的 EnhancedCriteria.
  * <p/>
  * Criteria 一直以来没有类型，强转总是很让人DT.
  * <p/>
@@ -15,10 +15,10 @@ import java.util.List;
  * Time: 上午9:56
  * @author bastengao
  */
-public class TypedSuperCriteria<T> {
+public class TypedCriteria<T> {
 
-    public static <T> TypedSuperCriteria<T> create(Session session, Class<T> entityClass) {
-        return new TypedSuperCriteria<T>(session.createCriteria(entityClass), entityClass);
+    public static <T> TypedCriteria<T> create(Session session, Class<T> entityClass) {
+        return new TypedCriteria<T>(session.createCriteria(entityClass), entityClass);
     }
 
 
@@ -30,48 +30,48 @@ public class TypedSuperCriteria<T> {
 
     private EnhancedCriteria enhancedCriteria;
 
-    public TypedSuperCriteria(Criteria criteria, Class<T> entityClass) {
+    public TypedCriteria(Criteria criteria, Class<T> entityClass) {
         this.criteria = criteria;
         this.entityClass = entityClass;
         enhancedCriteria = new EnhancedCriteria(criteria);
     }
 
-    public TypedSuperCriteria<T> equal(String property, Object value) {
+    public TypedCriteria<T> equal(String property, Object value) {
         enhancedCriteria.equal(property, value);
         return this;
     }
 
-    public TypedSuperCriteria<T> lt(String property, Object value){
+    public TypedCriteria<T> lt(String property, Object value){
         enhancedCriteria.lt(property, value);
         return this;
     }
 
-    public TypedSuperCriteria<T> le(String property, Object value){
+    public TypedCriteria<T> le(String property, Object value){
         enhancedCriteria.le(property, value);
         return this;
     }
 
-    public TypedSuperCriteria<T> gt(String property, Object value){
+    public TypedCriteria<T> gt(String property, Object value){
         enhancedCriteria.gt(property, value);
         return this;
     }
 
-    public TypedSuperCriteria<T> ge(String property, Object value){
+    public TypedCriteria<T> ge(String property, Object value){
         enhancedCriteria.ge(property, value);
         return this;
     }
 
-    public TypedSuperCriteria<T> order(String property) {
+    public TypedCriteria<T> order(String property) {
         enhancedCriteria.order(property);
         return this;
     }
 
-    public TypedSuperCriteria<T> orderASC(String property) {
+    public TypedCriteria<T> orderASC(String property) {
         enhancedCriteria.orderASC(property);
         return this;
     }
 
-    public TypedSuperCriteria<T> orderDESC(String property) {
+    public TypedCriteria<T> orderDESC(String property) {
         enhancedCriteria.orderDESC(property);
         return this;
     }

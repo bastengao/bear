@@ -19,7 +19,7 @@ Bear 实体
 根据 id 查找
 
     Session session = ...;
-    TypedSuperCriteria<Bear> criteria = TypedSuperCriteria.create(session, Bear.class);
+    TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
     Bear bear = criteria.equal("id", 1).one();
 
