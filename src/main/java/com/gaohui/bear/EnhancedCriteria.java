@@ -28,19 +28,6 @@ public class EnhancedCriteria {
     }
 
     /**
-     * alias equal()
-     *
-     * TODO delete this method. @bastengao 2012-11-17
-     *
-     * @param property
-     * @param value
-     * @return
-     */
-    public EnhancedCriteria where(String property, Object value) {
-        return equal(property,value);
-    }
-
-    /**
      * equal
      *
      * @param property
