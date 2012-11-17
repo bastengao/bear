@@ -15,15 +15,15 @@ import java.util.List;
  * Time: 上午9:38
  * @author bastengao
  */
-public class SuperCriteria {
-    public static SuperCriteria create(Session session, Class entityClass) {
-        return new SuperCriteria(session.createCriteria(entityClass));
+public class EnhancedCriteria {
+    public static EnhancedCriteria create(Session session, Class entityClass) {
+        return new EnhancedCriteria(session.createCriteria(entityClass));
     }
 
 
     protected Criteria criteria;
 
-    public SuperCriteria(Criteria criteria) {
+    public EnhancedCriteria(Criteria criteria) {
         this.criteria = criteria;
     }
 
@@ -36,7 +36,7 @@ public class SuperCriteria {
      * @param value
      * @return
      */
-    public SuperCriteria where(String property, Object value) {
+    public EnhancedCriteria where(String property, Object value) {
         return equal(property,value);
     }
 
@@ -47,7 +47,7 @@ public class SuperCriteria {
      * @param value
      * @return
      */
-    public SuperCriteria equal(String property, Object value){
+    public EnhancedCriteria equal(String property, Object value){
         criteria.add(Restrictions.eq(property, value));
         return this;
     }
@@ -59,7 +59,7 @@ public class SuperCriteria {
      * @param value
      * @return
      */
-    public SuperCriteria gt(String property, Object value) {
+    public EnhancedCriteria gt(String property, Object value) {
         criteria.add(Restrictions.gt(property, value));
         return this;
     }
@@ -71,7 +71,7 @@ public class SuperCriteria {
      * @param value
      * @return
      */
-    public SuperCriteria ge(String property, Object value) {
+    public EnhancedCriteria ge(String property, Object value) {
         criteria.add(Restrictions.ge(property, value));
         return this;
     }
@@ -83,7 +83,7 @@ public class SuperCriteria {
      * @param value
      * @return
      */
-    public SuperCriteria lt(String property, Object value) {
+    public EnhancedCriteria lt(String property, Object value) {
         criteria.add(Restrictions.lt(property, value));
         return this;
     }
@@ -95,7 +95,7 @@ public class SuperCriteria {
      * @param value
      * @return
      */
-    public SuperCriteria le(String property, Object value) {
+    public EnhancedCriteria le(String property, Object value) {
         criteria.add(Restrictions.le(property, value));
         return this;
     }
@@ -106,7 +106,7 @@ public class SuperCriteria {
      * @param property
      * @return
      */
-    public SuperCriteria order(String property) {
+    public EnhancedCriteria order(String property) {
         return orderASC(property);
     }
 
@@ -116,7 +116,7 @@ public class SuperCriteria {
      * @param property
      * @return
      */
-    public SuperCriteria orderASC(String property) {
+    public EnhancedCriteria orderASC(String property) {
         criteria.addOrder(Order.asc(property));
         return this;
     }
@@ -127,7 +127,7 @@ public class SuperCriteria {
      * @param property
      * @return
      */
-    public SuperCriteria orderDESC(String property) {
+    public EnhancedCriteria orderDESC(String property) {
         criteria.addOrder(Order.desc(property));
         return this;
     }
