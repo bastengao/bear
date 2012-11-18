@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<persistence>
+    <!-- TODO do not work -->
+    <persistence-unit name="hibernate" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>com.gaohui.entity.Bear</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver"
+                      value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/bear"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="1234"/>
+        </properties>
+    </persistence-unit>
+</persistence>
