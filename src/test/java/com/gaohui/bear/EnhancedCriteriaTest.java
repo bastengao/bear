@@ -29,6 +29,27 @@ public class EnhancedCriteriaTest extends PerSessionBaseTest {
     }
 
     @Test
+    public void testNot() {
+        EnhancedCriteria enhancedCriteria = EnhancedCriteria.create(session, Bear.class);
+        List<Bear> bears = (List<Bear>) enhancedCriteria.not("id", 1).list();
+        System.out.println(bears);
+    }
+
+    @Test
+    public void testIsNull(){
+        EnhancedCriteria enhancedCriteria = EnhancedCriteria.create(session, Bear.class);
+        List<Bear> bears = enhancedCriteria.isNull("name").list();
+        System.out.println(bears);
+    }
+
+    @Test
+    public void testIsNotNull(){
+        EnhancedCriteria enhancedCriteria = EnhancedCriteria.create(session, Bear.class);
+        List<Bear> bears = enhancedCriteria.isNotNull("name").list();
+        System.out.println(bears);
+    }
+
+    @Test
     public void testList() {
         EnhancedCriteria enhancedCriteria = new EnhancedCriteria(session.createCriteria(Bear.class));
         List<Bear> bears = enhancedCriteria.list();
@@ -62,10 +83,10 @@ public class EnhancedCriteriaTest extends PerSessionBaseTest {
     }
 
     @Test
-    public void multiOrderBy(){
+    public void multiOrderBy() {
         EnhancedCriteria enhancedCriteria = EnhancedCriteria.create(session, Bear.class);
 
-        List<Bear> bears =  (List<Bear>) enhancedCriteria.order("name").orderDESC("age").list();
+        List<Bear> bears = (List<Bear>) enhancedCriteria.order("name").orderDESC("age").list();
         System.out.println(bears);
     }
 
@@ -86,7 +107,7 @@ public class EnhancedCriteriaTest extends PerSessionBaseTest {
     }
 
     @Test
-    public void testGE(){
+    public void testGE() {
         EnhancedCriteria enhancedCriteria = EnhancedCriteria.create(session, Bear.class);
 
         List<Bear> bears = enhancedCriteria.ge("age", 3).list();
@@ -94,7 +115,7 @@ public class EnhancedCriteriaTest extends PerSessionBaseTest {
     }
 
     @Test
-    public void testGT(){
+    public void testGT() {
         EnhancedCriteria enhancedCriteria = EnhancedCriteria.create(session, Bear.class);
 
         List<Bear> bears = enhancedCriteria.gt("age", 3).list();
@@ -102,7 +123,7 @@ public class EnhancedCriteriaTest extends PerSessionBaseTest {
     }
 
     @Test
-    public void testLE(){
+    public void testLE() {
         EnhancedCriteria enhancedCriteria = EnhancedCriteria.create(session, Bear.class);
 
         List<Bear> bears = enhancedCriteria.le("age", 5).list();
@@ -110,7 +131,7 @@ public class EnhancedCriteriaTest extends PerSessionBaseTest {
     }
 
     @Test
-    public void testLT(){
+    public void testLT() {
         EnhancedCriteria enhancedCriteria = EnhancedCriteria.create(session, Bear.class);
 
         List<Bear> bears = enhancedCriteria.lt("age", 5).list();

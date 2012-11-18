@@ -10,12 +10,21 @@ import java.util.List;
 
 /**
  * 对 criteria 有一个简单的增强
- *
+ * <p/>
  * Date: 12-10-4
  * Time: 上午9:38
+ *
  * @author bastengao
  */
 public class EnhancedCriteria {
+
+    /**
+     * 通过 Session 创建
+     *
+     * @param session
+     * @param entityClass
+     * @return
+     */
     public static EnhancedCriteria create(Session session, Class entityClass) {
         return new EnhancedCriteria(session.createCriteria(entityClass));
     }
@@ -23,6 +32,10 @@ public class EnhancedCriteria {
 
     protected Criteria criteria;
 
+    /**
+     * 通过给定的 Criteria 创建
+     * @param criteria
+     */
     public EnhancedCriteria(Criteria criteria) {
         this.criteria = criteria;
     }
@@ -34,8 +47,30 @@ public class EnhancedCriteria {
      * @param value
      * @return
      */
-    public EnhancedCriteria equal(String property, Object value){
+    public EnhancedCriteria equal(String property, Object value) {
         criteria.add(Restrictions.eq(property, value));
+        return this;
+    }
+
+    /**
+     * not equal
+     *
+     * @param property
+     * @param value
+     * @return
+     */
+    public EnhancedCriteria not(String property, Object value) {
+        criteria.add(Restrictions.ne(property, value));
+        return this;
+    }
+
+    public EnhancedCriteria isNull(String property) {
+        criteria.add(Restrictions.isNull(property));
+        return this;
+    }
+
+    public EnhancedCriteria isNotNull(String property) {
+        criteria.add(Restrictions.isNotNull(property));
         return this;
     }
 
@@ -143,7 +178,6 @@ public class EnhancedCriteria {
 
 
     /**
-     *
      * @return return single result
      */
     public Object one() {
@@ -152,7 +186,6 @@ public class EnhancedCriteria {
     }
 
     /**
-     *
      * @return return list
      */
     public List list() {
@@ -163,7 +196,7 @@ public class EnhancedCriteria {
      * return list by paging
      *
      * @param first firstResult
-     * @param max maxResult
+     * @param max   maxResult
      * @return
      */
     public List list(int first, int max) {
