@@ -2,7 +2,9 @@ package com.gaohui.bear;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -53,6 +55,31 @@ public class TypedCriteria<T> {
 
     public TypedCriteria<T> isNotNull(String property) {
         enhancedCriteria.isNotNull(property);
+        return this;
+    }
+
+    public TypedCriteria<T> like(String property, String value, MatchMode matchMode) {
+        enhancedCriteria.like(property, value, matchMode);
+        return this;
+    }
+
+    public TypedCriteria<T> in(String property, Object[] values) {
+        enhancedCriteria.in(property, values);
+        return this;
+    }
+
+    public TypedCriteria<T> between(String property, Object low, Object high) {
+        enhancedCriteria.between(property, low, high);
+        return this;
+    }
+
+    public TypedCriteria<T> like(String property, Object value) {
+        enhancedCriteria.like(property, value);
+        return this;
+    }
+
+    public TypedCriteria<T> in(String property, Collection values) {
+        enhancedCriteria.in(property, values);
         return this;
     }
 

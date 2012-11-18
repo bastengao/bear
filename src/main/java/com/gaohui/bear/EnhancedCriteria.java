@@ -2,10 +2,12 @@ package com.gaohui.bear;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -34,6 +36,7 @@ public class EnhancedCriteria {
 
     /**
      * 通过给定的 Criteria 创建
+     *
      * @param criteria
      */
     public EnhancedCriteria(Criteria criteria) {
@@ -71,6 +74,34 @@ public class EnhancedCriteria {
 
     public EnhancedCriteria isNotNull(String property) {
         criteria.add(Restrictions.isNotNull(property));
+        return this;
+    }
+
+    public EnhancedCriteria like(String property, Object value) {
+        // TODO 我不知道为啥这个 value 是 Object 类型而不是 String 类型
+        criteria.add(Restrictions.like(property, value));
+        return this;
+    }
+
+    public EnhancedCriteria like(String property, String value, MatchMode matchMode) {
+        // TODO 我不知道为啥这个 value 是 Object 类型而不是 String 类型
+        // TODO 将来不要暴露 MatchMode ，换成自己的枚举类型
+        criteria.add(Restrictions.like(property, value, matchMode));
+        return this;
+    }
+
+    public EnhancedCriteria between(String property, Object low, Object high) {
+        criteria.add(Restrictions.between(property, low, high));
+        return this;
+    }
+
+    public EnhancedCriteria in(String property, Collection values) {
+        criteria.add(Restrictions.in(property, values));
+        return this;
+    }
+
+    public EnhancedCriteria in(String property, Object[] values) {
+        criteria.add(Restrictions.in(property, values));
         return this;
     }
 

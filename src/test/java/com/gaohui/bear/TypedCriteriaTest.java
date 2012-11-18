@@ -1,8 +1,10 @@
 package com.gaohui.bear;
 
 import com.gaohui.entity.Bear;
+import org.hibernate.criterion.MatchMode;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,16 +39,51 @@ public class TypedCriteriaTest extends PerSessionBaseTest {
     }
 
     @Test
-    public void testIsNull(){
+    public void testIsNull() {
         TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
         List<Bear> bears = criteria.isNull("name").list();
         System.out.println(bears);
     }
 
     @Test
-    public void testIsNotNull(){
+    public void testIsNotNull() {
         TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
         List<Bear> bears = criteria.isNotNull("name").list();
+        System.out.println(bears);
+    }
+
+    @Test
+    public void testLike() {
+        EnhancedCriteria criteria = EnhancedCriteria.create(session, Bear.class);
+        Bear bear = (Bear) criteria.like("name", "fo%").one();
+        System.out.println(bear);
+    }
+
+    @Test
+    public void testLike2() {
+        EnhancedCriteria criteria = EnhancedCriteria.create(session, Bear.class);
+        Bear bear = (Bear) criteria.like("name", "fo", MatchMode.START).one();
+        System.out.println(bear);
+    }
+
+    @Test
+    public void testBetween() {
+        EnhancedCriteria criteria = EnhancedCriteria.create(session, Bear.class);
+        List<Bear> bears = criteria.between("age", 1, 5).list();
+        System.out.println(bears);
+    }
+
+    @Test
+    public void testIn() {
+        EnhancedCriteria criteria = EnhancedCriteria.create(session, Bear.class);
+        List<Bear> bears = criteria.in("id", Arrays.asList(2, 3, 4, 5)).list();
+        System.out.println(bears);
+    }
+
+    @Test
+    public void testIn2() {
+        EnhancedCriteria criteria = EnhancedCriteria.create(session, Bear.class);
+        List<Bear> bears = criteria.in("id", new Integer[]{2, 3, 4, 5}).list();
         System.out.println(bears);
     }
 
@@ -70,10 +107,10 @@ public class TypedCriteriaTest extends PerSessionBaseTest {
     }
 
     @Test
-    public void multiOrderBy(){
+    public void multiOrderBy() {
         TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
-        List<Bear> bears =  criteria.order("name").orderDESC("age").list();
+        List<Bear> bears = criteria.order("name").orderDESC("age").list();
         System.out.println(bears);
     }
 
@@ -108,7 +145,7 @@ public class TypedCriteriaTest extends PerSessionBaseTest {
     }
 
     @Test
-    public void testGE(){
+    public void testGE() {
         TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
         List<Bear> bears = criteria.ge("age", 3).list();
@@ -116,7 +153,7 @@ public class TypedCriteriaTest extends PerSessionBaseTest {
     }
 
     @Test
-    public void testGT(){
+    public void testGT() {
         TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
         List<Bear> bears = criteria.gt("age", 3).list();
@@ -124,7 +161,7 @@ public class TypedCriteriaTest extends PerSessionBaseTest {
     }
 
     @Test
-    public void testLE(){
+    public void testLE() {
         TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
         List<Bear> bears = criteria.le("age", 5).list();
@@ -132,7 +169,7 @@ public class TypedCriteriaTest extends PerSessionBaseTest {
     }
 
     @Test
-    public void testLT(){
+    public void testLT() {
         TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
         List<Bear> bears = criteria.lt("age", 5).list();
