@@ -30,6 +30,27 @@ public class TypedCriteriaTest extends PerSessionBaseTest {
     }
 
     @Test
+    public void testNot() {
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
+        List<Bear> bears = (List<Bear>) criteria.not("id", 1).list();
+        System.out.println(bears);
+    }
+
+    @Test
+    public void testIsNull(){
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
+        List<Bear> bears = criteria.isNull("name").list();
+        System.out.println(bears);
+    }
+
+    @Test
+    public void testIsNotNull(){
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
+        List<Bear> bears = criteria.isNotNull("name").list();
+        System.out.println(bears);
+    }
+
+    @Test
     public void testOrder() {
         TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
 
@@ -70,6 +91,20 @@ public class TypedCriteriaTest extends PerSessionBaseTest {
 
         long count = criteria.count("id");
         System.out.println(count);
+    }
+
+    @Test
+    public void testList() {
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
+        List<Bear> bears = criteria.list();
+        System.out.println(bears);
+    }
+
+    @Test
+    public void testListPaging() {
+        TypedCriteria<Bear> criteria = TypedCriteria.create(session, Bear.class);
+        List<Bear> bears = criteria.list(1, 2);
+        System.out.println(bears);
     }
 
     @Test

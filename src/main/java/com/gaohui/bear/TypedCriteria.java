@@ -41,6 +41,21 @@ public class TypedCriteria<T> {
         return this;
     }
 
+    public TypedCriteria<T> not(String property, Object value) {
+        enhancedCriteria.not(property, value);
+        return this;
+    }
+
+    public TypedCriteria<T> isNull(String property) {
+        enhancedCriteria.isNull(property);
+        return this;
+    }
+
+    public TypedCriteria<T> isNotNull(String property) {
+        enhancedCriteria.isNotNull(property);
+        return this;
+    }
+
     public TypedCriteria<T> lt(String property, Object value){
         enhancedCriteria.lt(property, value);
         return this;
