@@ -1,6 +1,7 @@
 package com.gaohui.bear;
 
 import com.gaohui.entity.Bear;
+import com.gaohui.entity.Python;
 import org.hibernate.criterion.MatchMode;
 import org.junit.Test;
 
@@ -174,5 +175,12 @@ public class TypedCriteriaTest extends PerSessionBaseTest {
 
         List<Bear> bears = criteria.lt("age", 5).list();
         System.out.println(bears);
+    }
+
+    @Test
+    public void testFetch() {
+        TypedCriteria<Python> criteria = TypedCriteria.create(session, Python.class);
+        List<Python> pythons = criteria.fetch("friends").list();
+        System.out.println(pythons);
     }
 }

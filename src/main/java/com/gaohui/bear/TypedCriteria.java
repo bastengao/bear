@@ -12,9 +12,10 @@ import java.util.List;
  * <p/>
  * Criteria 一直以来没有类型，强转总是很让人DT.
  * <p/>
- *
+ * <p/>
  * Date: 12-10-4
  * Time: 上午9:56
+ *
  * @author bastengao
  */
 public class TypedCriteria<T> {
@@ -83,22 +84,22 @@ public class TypedCriteria<T> {
         return this;
     }
 
-    public TypedCriteria<T> lt(String property, Object value){
+    public TypedCriteria<T> lt(String property, Object value) {
         enhancedCriteria.lt(property, value);
         return this;
     }
 
-    public TypedCriteria<T> le(String property, Object value){
+    public TypedCriteria<T> le(String property, Object value) {
         enhancedCriteria.le(property, value);
         return this;
     }
 
-    public TypedCriteria<T> gt(String property, Object value){
+    public TypedCriteria<T> gt(String property, Object value) {
         enhancedCriteria.gt(property, value);
         return this;
     }
 
-    public TypedCriteria<T> ge(String property, Object value){
+    public TypedCriteria<T> ge(String property, Object value) {
         enhancedCriteria.ge(property, value);
         return this;
     }
@@ -118,11 +119,16 @@ public class TypedCriteria<T> {
         return this;
     }
 
-    public long count(){
+    public TypedCriteria<T> fetch(String property) {
+        enhancedCriteria.fetch(property);
+        return this;
+    }
+
+    public long count() {
         return enhancedCriteria.count();
     }
 
-    public long count(String property){
+    public long count(String property) {
         return enhancedCriteria.count(property);
     }
 

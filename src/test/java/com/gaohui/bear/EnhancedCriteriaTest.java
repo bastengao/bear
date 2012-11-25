@@ -180,4 +180,11 @@ public class EnhancedCriteriaTest extends PerSessionBaseTest {
         EnhancedCriteria criteria = EnhancedCriteria.create(session, Python.class);
         System.out.println(criteria.list());
     }
+
+    @Test
+    public void testFetch() {
+        EnhancedCriteria criteria = EnhancedCriteria.create(session, Python.class);
+        List<Python> pythons = criteria.fetch("friends").list();
+        System.out.println(pythons);
+    }
 }

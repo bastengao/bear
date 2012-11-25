@@ -1,6 +1,7 @@
 package com.gaohui.bear;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -182,6 +183,17 @@ public class EnhancedCriteria {
      */
     public EnhancedCriteria orderDESC(String property) {
         criteria.addOrder(Order.desc(property));
+        return this;
+    }
+
+    /**
+     * join fetch specific property
+     *
+     * @param property
+     * @return
+     */
+    public EnhancedCriteria fetch(String property) {
+        criteria.setFetchMode(property, FetchMode.JOIN);
         return this;
     }
 
